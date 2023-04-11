@@ -19,7 +19,7 @@
 
         <li><a href="boardlist">Board</a></li>
         <li><a href="flealist">Flea Market</a></li>
-        <li><a href="#">Introduce</a></li>
+        <li><a href="../introduce">Introduce</a></li>
         <li><a href="login">Login</a></li>
     </ul>
 </nav>
@@ -37,19 +37,19 @@
             <div class="info">
                 <dl>
                     <dt>번호</dt>     <!-- boardNum 추가 -->
-                    <dd>1</dd>
+                    <dd th:text="${board.bno}"></dd>
                 </dl>
                 <dl>
                     <dt>글쓴이</dt>
-                    <dd>이름</dd>    <!-- userNickname 추가 -->
+                    <dd th:text="${board.writer}"></dd>    <!-- userNickname 추가 -->
                 </dl>
                 <dl>
                     <dt>작성일</dt>
-                    <dd>2023.3.23</dd>  <!-- regDate 추가 -->
+                    <dd th:text="${board.date}"></dd>  <!-- regDate 추가 -->
                 </dl>
                 <dl>
                     <dt>조회</dt>     <!-- viewCount 추가 -->
-                    <dd>33</dd>
+                    <dd th:text="${board.count}"></dd>
                 </dl>
             </div>
             <div class="cont">

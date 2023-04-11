@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 
 public class introduceController {
-
-    @RequestMapping("introduce/introduce")
+    @RequestMapping("/introduce")
         public String introForm() {
-        return "introduce/introduce";
+            return "introduce/introduce";
     }
 }

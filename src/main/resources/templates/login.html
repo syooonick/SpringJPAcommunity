@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegularBold | login</title>
+    <link rel="stylesheet" href="/css/login.css"/>
+    <link rel="stylesheet" href="/css/css.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav_logo">
+<!--        <i class="fa-solid fa-star"></i>-->
+        <a href="../main">Regular<span>   Bold</span></a>
+    </div>
+
+    <ul class="nav_menu">
+        <li><a href="main">Main</a></li>
+        <li><a href="#">Photo</a></li>
+        <li><a href="boardlist">Board</a></li>
+        <li><a href="flealist">Flea Market</a></li>
+        <li><a href="#">Introduce</a></li>
+        <li><a href="login">Login</a></li>
+    </ul>
+</nav>
+
+<div class="wrap" style="font-size: 25px;">
+
+            <div class="font" style="top: 4rem;">
+                로그인
+            </div>
+
+            <div class="login">
+                <h2>Regular Bold</h2>
+                        <div class="login_id">
+                            <h4>ID</h4>
+                            <input type="text" name="userId" id="id" placeholder="ID">
+                        </div>
+
+                        <div class="login_pw">
+                            <h4>Password</h4>
+                            <input type="password" name="userPw" id="password" placeholder="Password">
+                        </div>
+
+                        <div class="submit">
+                            <input type="submit" value="LOGIN">
+                        </div>
+
+                        <div class="submit">
+                            <a href="signup"><input type="submit" value="SIGN UP"></a>
+                        </div>
+            </div>
+</div>
+</body>
+<!--</html>-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>RegularBold | login</title>-->
+<!--    <link rel="stylesheet" href="/css/login.css"/>-->
+<!--    <link rel="stylesheet" href="/css/css.css"/>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<nav class="navbar">-->
+<!--    <div class="nav_logo">-->
+<!--        <a href="../main">Regular<span>   Bold</span></a>-->
+<!--    </div>-->
+
+<!--    <ul class="nav_menu">-->
+<!--        <li><a href="main">Main</a></li>-->
+<!--        <li><a href="#">Photo</a></li>-->
+<!--        <li><a href="boardlist">Board</a></li>-->
+<!--        <li><a href="flealist">Flea Market</a></li>-->
+<!--        <li><a href="#">Introduce</a></li>-->
+<!--        <li><a href="login">Login</a></li>-->
+<!--    </ul>-->
+<!--</nav>-->
+
+<!--<div class="wrap" style="font-size: 25px;">-->
+<!--    <div class="login">-->
+<!--        <h2>Regular Bold</h2>-->
+<!--        <form action="#" th:action="@{/login}" th:object="${loginForm}" method="post">-->
+<!--            <div class="login_id">-->
+<!--                <h4>ID</h4>-->
+<!--                <input type="text" th:field="*{userId}" placeholder="ID">-->
+<!--            </div>-->
+
+<!--            <div class="login_pw">-->
+<!--                <h4>Password</h4>-->
+<!--                <input type="password" th:field="*{userPw}" placeholder="Password">-->
+<!--            </div>-->
+
+<!--            <div class="submit">-->
+<!--                <input type="submit" value="LOGIN">-->
+<!--            </div>-->
+<!--        </form>-->
+
+<!--        <div class="submit">-->
+<!--            <a href="/signup"><input type="submit" value="SIGN UP"></a>-->
+<!--        </div>-->
+
+<!--        <p th:if="${param.error}">-->
+<!--            아이디와 비밀번호를 확인 해주세요.-->
+<!--        </p>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

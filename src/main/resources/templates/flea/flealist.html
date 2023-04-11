@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regular Bold | 플리마켓</title>
+    <link rel="stylesheet" href="/css/css.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<!--    <img src="/images/logo.png"/>-->
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav_logo">
+        <i class="fa-solid fa-star"></i>
+        <a href="../main">Regular<span>   Bold</span></a>
+    </div>
+
+    <ul class="nav_menu">
+        <li><a href="main">Main</a></li>
+        <li><a href="#">Photo</a></li>
+        <li><a href="boardlist">Board</a></li>
+        <li><a href="flealist">Flea Market</a></li>
+        <li><a href="#">Introduce</a></li>
+        <li><a href="login">Login</a></li>
+    </ul>
+</nav>
+
+<div class="font">
+    플리마켓
+</div>
+
+<div class="board_wrap">
+    <div class="logo.png"></div>
+    <div class="board_title">
+
+        <strong>Regular Bold</strong>
+        <p>레귤러볼드 플리마켓</p>
+
+        <form th:action="@{/flea/list}" method="get">
+            <button type="submit" style="width:70px; height:30px; float:right";>검색</button>
+            <input type="text" style="width:33%; height:26px; float:right;" name="searchKeyword">
+        </form>
+
+    </div>
+
+    <div class="board_list_wrap">
+        <div class="board_list">
+            <div class="top">
+                <div class="num">번호</div>
+                <div class="title">제목</div>
+                <div class="writer">글쓴이</div>
+                <div class="date">작성일</div>
+                <div class="count">조회</div>
+            </div>
+            <!-- 게시글 리스트 -->
+            <div th:each="flea : ${list}">
+
+                <div class="num" th:text="${flea.bno}"></div>
+
+                <div class="title"><a th:href="@{/fleaview(bno=${flea.bno})}" th:text="${flea.title}"></a></div>
+
+                <div class="writer">이성윤</div>
+
+                <div class="date">2023-04-03</div>
+00
+                <div class="count">33</div>
+
+            </div>
+        </div>
+
+        <div class="board_page">
+        <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+            <a th:if="${page != nowPage}"
+               th:href="@{/flea/list(page = ${page -1}, searchKeyword = ${param.searchKeyword})}"
+               th:text="${page}"></a>
+        </th:block>
+        </div>
+
+        <div class="board_page">
+            <a href="#" class="bt first"><<</a>
+            <a href="#" class="bt prev"><</a>
+            <a href="#" class="num on">1</a>
+            <a href="#" class="num">2</a>
+            <a href="#" class="num">3</a>
+            <a href="#" class="num">4</a>
+            <a href="#" class="num">5</a>
+            <a href="#" class="bt next">></a>
+            <a href="#" class="bt last">>></a>
+        </div>
+        <div class="bt_wrap">
+            <a href="/flea/write" class="on">등록</a>
+        </div>
+    </div>
+</div>
+</body>

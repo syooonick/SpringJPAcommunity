@@ -1,10 +1,9 @@
 package com.study.board.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import javax.persistence.*;
 import lombok.Data;
+
+import java.util.Date;
 
 
 @Entity
@@ -23,4 +22,11 @@ public class Flea {
     private String filename;
 
     private String filepath;
+
+    private String writer;
+
+    private String count;
+
+    private Date date;
+
 }

@@ -1,23 +1,24 @@
 package com.study.board.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
+
+import javax.persistence.*;
 
 
 @Entity
 @Data
+@Table
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int bno;
+    private long id;
 
-    private String userId;
+    @Column(unique = true)
+    private String username;
 
-    private String userPw;
+    private String password;
 
-    private String phone;
+    @Column(unique = true)
+    private String email;
 
 }

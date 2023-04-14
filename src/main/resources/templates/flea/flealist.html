@@ -24,7 +24,7 @@
 
         <li><a href="boardlist">Board</a></li>
         <li><a href="flealist">Flea Market</a></li>
-        <li><a href="#">Introduce</a></li>
+        <li><a href="../introduce">Introduce</a></li>
         <li><a href="login">Login</a></li>
     </ul>
 </nav>
@@ -63,34 +63,26 @@
 
                 <div class="title"><a th:href="@{/fleaview(bno=${flea.bno})}" th:text="${flea.title}"></a></div>
 
-                <div class="writer">이성윤</div>
+                <div class="writer" th:text="${flea.writer}"></div>
 
-                <div class="date">2023-04-03</div>
-00
-                <div class="count">33</div>
+                <div class="date" th:text="${#dates.format(flea.date, 'yyyy-MM-dd')}"></div>
+<!--                <div class="date" th:if="${flea.date != null}" th:text="${#dates.format(flea.date, 'yyyy-MM-dd')}"></div>-->
+
+                <div class="count" th:text="${flea.count}"></div>
 
             </div>
         </div>
 
         <div class="board_page">
-        <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
-            <a th:if="${page != nowPage}"
-               th:href="@{/flea/list(page = ${page -1}, searchKeyword = ${param.searchKeyword})}"
-               th:text="${page}"></a>
-        </th:block>
+            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                <a th:if="${page != nowPage}"
+                   th:href="@{/boardlist(page=${page -1}, searchKeyword=${param.searchKeyword})}"
+                   th:text="${page}" class="num"></a>
+                <a th:if="${page == nowPage}"
+                   th:text="${page}" class="num on"></a>
+            </th:block>
         </div>
 
-        <div class="board_page">
-            <a href="#" class="bt first"><<</a>
-            <a href="#" class="bt prev"><</a>
-            <a href="#" class="num on">1</a>
-            <a href="#" class="num">2</a>
-            <a href="#" class="num">3</a>
-            <a href="#" class="num">4</a>
-            <a href="#" class="num">5</a>
-            <a href="#" class="bt next">></a>
-            <a href="#" class="bt last">>></a>
-        </div>
         <div class="bt_wrap">
             <a href="/flea/write" class="on">등록</a>
         </div>

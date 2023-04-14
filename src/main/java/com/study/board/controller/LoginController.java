@@ -22,10 +22,6 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping("/signup")
-    public String signupForm() {
-        return "signup";
-    }
 
 //    @Autowired
 //    private LoginService loginService;

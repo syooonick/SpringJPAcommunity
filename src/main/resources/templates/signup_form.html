@@ -58,7 +58,9 @@
 
 
 
-<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html layout:decorate="~{layout}"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,7 +73,9 @@
             <h4>회원가입</h4>
         </div>
     </div>
-    <form th:action="@{user/signup}" th:object="${userCreateForm}" method="post">
+
+<!--    <form th:action="@{/entity/user}" th:object="${userCreateForm}" method="post">-->
+    <form action="signup_form.html" th:action th:object="${userCreateForm}" method="post">
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>
 
         <div class="mb-3">

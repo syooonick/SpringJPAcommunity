@@ -4,7 +4,7 @@
 }
 html {
     font-size: 10px;
-    background: rgba(0, 0, 0, 0.1);
+    /*background: rgba(0, 0, 0, 0.1);*/
     /*color: var(--text-color);*/
 }
 ul, li {

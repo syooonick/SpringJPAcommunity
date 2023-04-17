@@ -3,6 +3,7 @@ package com.study.board.controller;
 import com.study.board.UserCreateForm;
 import com.study.board.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +14,13 @@ import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/signup_form")
 public class UserController {
+
+    @Autowired
     private final UserService userService;
 
-    @GetMapping("/signup")
+    @GetMapping("/user")
     public String signup(UserCreateForm userCreateForm) {
         return "signup_form";
     }

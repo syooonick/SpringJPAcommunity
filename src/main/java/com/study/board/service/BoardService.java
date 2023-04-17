@@ -21,14 +21,17 @@ public class BoardService {
     public Page<Board> boardlist(Pageable pageable) {
         return boardRepository.findAll(pageable);
     }
+
     // 특정 게시글 조회
     public Board boardView(Integer bno) {
         return boardRepository.findById(bno).get();
     }
+
     // 특정 게시글 삭제
     public void boardDelete(Integer bno) {
         boardRepository.deleteById(bno);
     }
+
     // 검색 기능
     public Page<Board> boardSearchList(String searchKeyword, Pageable pageable) {
         return boardRepository.findByTitleContaining(searchKeyword, pageable);

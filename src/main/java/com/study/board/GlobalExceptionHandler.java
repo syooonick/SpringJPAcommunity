@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("exception", ex);
         modelAndView.addObject("url", request.getRequestURL());
-        modelAndView.setViewName("main");
+        modelAndView.setViewName("error/form_errors");
 
         return modelAndView;
     }

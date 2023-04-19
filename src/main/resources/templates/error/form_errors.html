@@ -1,12 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>ERROR</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <title>에러</title>
 </head>
 <body>
-    <div th:fragment="formErrorsFragment" class="alert alert-danger"
-         role="alert" th:if="${#fields.hasAnyErrors()}">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="main">Regular Bold</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="../boardlist">자유게시판</a></li>
+                        <li><a class="dropdown-item" href="../board/write">자유게시판 글쓰기</a></li>
+                        <li><a class="dropdown-item" href="../flealist">플리마켓</a></li>
+                        <li><a class="dropdown-item" href="../flea/write">플리마켓 글쓰기</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex">
+                </button>
+                <button class="btn btn-outline-dark"><a href="../flea/write"></a>
+                    <i class="bi bi-people"></i>
+                    Login
+                </button>
+            </form>
+        </div>
     </div>
+</nav>
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Regular Bold</h1>
+            <p class="lead fw-normal text-white-50 mb-0">ERROR PAGE</p>
+        </div>
+    </div>
+</header>
+        <body>
+        <div class="container px-4 px-lg my-5">
+            <div class="text-center">
+                <h1 class="display-4 fw-bolder">Regular Bold | COMMUNITY</h1>
+            </div>
+            <div class="container">
+                <!-- Contents -->
+                <div class="contents text-center">
+                    <div class="cont-wrap">
+                        <h2>서비스 이용에 불편을 드려 죄송합니다.</h2>
+                        <p class="text">일시적인 서버 접속 장애로 인하여 요청하신 페이지 확인이 어렵습니다.<br>잠시 후 다시 한 번 접속해 주시기 바랍니다.</p>
+                        <div class="btn-wrap">
+                            <a href="main" class="btn btn-primary text-center">메인 화면으로 이동</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </body><br><br><br><br><br><br><br><br><br>
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; SUNG YOON LEE
+        <br>주식회사 레귤러볼드서울시 성동구 서울숲2길 32-14 갤러리아포레 1동 3층
+        <br>전화 02-2138-0123 프로젝트 문의 hello@regularbold.co.kr 채용 문의 job@regularbold.co.kr</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
 </body>
 </html>

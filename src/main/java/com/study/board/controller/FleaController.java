@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,9 +28,23 @@ public class FleaController {
     }
 
     @PostMapping("/flea/writedo")
-    public String fleaWritePro(Flea flea, Model model, MultipartFile file) throws Exception {
+    public String fleaWritePro(Flea flea, Model model, MultipartFile imgFile) throws Exception {
+        fleaService.write(flea, imgFile);
 
-        fleaService.write(flea, file);
+        if (imgFile != null) {
+
+            try {
+                imgFile.getOriginalFilename();
+
+            } catch (NullPointerException e) {
+
+                throw new Exception("이미지 파일을 선택해주세요.");
+
+            }
+
+        } else {
+            throw new Exception("상품을 등록해주세요.");
+        }
 
         model.addAttribute("message", "글 작성이 완료 되었습니다.");
         model.addAttribute("searchUrl", "/flealist");
@@ -39,8 +54,8 @@ public class FleaController {
 
     @GetMapping("/flealist")
     public String fleaList(Model model, @PageableDefault(page = 0, size = 10, sort = "bno", direction = Sort.Direction.DESC)
-                            Pageable pageable,
-                            String searchKeyword) {
+    Pageable pageable,
+                           String searchKeyword) {
 
         Page<Flea> list = null;
 
@@ -61,6 +76,7 @@ public class FleaController {
 
         return "flea/flealist";
     }
+
     @GetMapping("/fleaview")
     public String fleaView(Model model, Integer bno) {
         model.addAttribute("flea", fleaService.fleaView(bno));

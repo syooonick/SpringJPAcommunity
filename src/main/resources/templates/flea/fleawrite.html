@@ -28,19 +28,23 @@
       <strong>Regular Bold</strong>
       <p>Regular Bold 플리마켓 상품등록</p>
     </div>
-    <form action="/flea/writedo" method="post" class="board_write_wrap" enctype="multipart/form-data">
+    <form th:action="@{/flea/writedo}" method="post" class="board_write_wrap" enctype="multipart/form-data">
       <div class="board_write">
-        <div class="title">
-          <dl>
-            <dt>제목</dt>
-            <dd><input type="text" name="title" placeholder="제목 입력"></dd>
-          </dl>
-        </div>
-        <div class="cont">
-          <textarea name="content" placeholder="내용 입력"></textarea>
-        </div>
+          <div class="title">
+            <dl>
+               <dt>제목</dt>
+               <dd><input type="text" name="title" placeholder="제목 입력"></dd>
+            </dl>
+          </div>
+          <div class="cont">
+              <textarea name="content" placeholder="내용 입력"></textarea>
+          </div>
       </div>
-      <input type="file" name="file">
+
+        <div class="col-12">
+            <input type="file" class="form-control" id="imgFile" name="imgFile">
+        </div>
+
       <div class="bt_wrap">
         <button type="submit" class="bt_on" style="display:inline-block; min-width: 80px; margin-left: 10px; padding: 10px;
                         border: 1px solid #000; font-size: 1.4rem; background: #000; color: #fff; width: 100px;">등록</button>

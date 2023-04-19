@@ -1,4 +1,5 @@
 use board;
+use flea;
 
 DELIMITER $$
 
@@ -8,7 +9,7 @@ BEGIN
 	DECLARE i INT DEFAULT 1;
     
     WHILE i <= 15 DO
-		INSERT INTO board(title, content)
+		INSERT INTO flea(title, content)
 			VALUES(concat('TEST',i), concat('TEST',i));
 		SET i = i + 1;
 	END WHILE;

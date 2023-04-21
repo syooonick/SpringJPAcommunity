@@ -2,6 +2,9 @@ package com.study.board.service;
 
 import com.study.board.entity.Flea;
 import com.study.board.repository.FleaRepository;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,7 +21,7 @@ public class FleaService {
     @Autowired
     private FleaRepository fleaRepository;
     // 글쓰기
-    public void write(Flea flea, MultipartFile imgFile) throws Exception {
+    public void write(Flea flea, @NotNull MultipartFile imgFile) throws Exception {
 
         String oriImgName = imgFile.getOriginalFilename();
         String imgName = "";
@@ -30,16 +34,20 @@ public class FleaService {
 
         imgName = savedFileName;
 
-        File saveFile = new File(projectPath, imgName);
+        // 이미지 파일을 버퍼에 로드
+        byte[] bytes;
+        try (InputStream inputStream = imgFile.getInputStream()) {
+            bytes = IOUtils.toByteArray(inputStream);
+        }
 
-        imgFile.transferTo(saveFile);
+        File saveFile = new File(projectPath, imgName);
+        FileUtils.writeByteArrayToFile(saveFile, bytes); // byte[]를 파일로 저장
 
         flea.setImgName(imgName);
-
-        flea.setImgPath("/static/files/" + imgName);
-
+        flea.setImgPath("/files/" + imgName);
         fleaRepository.save(flea);
     }
+
 
     // 리스트 조회
     public Page<Flea> flealist(Pageable pageable) {

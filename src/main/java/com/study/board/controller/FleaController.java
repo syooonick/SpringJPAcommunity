@@ -7,13 +7,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 
@@ -53,15 +58,17 @@ public class FleaController {
     }
 
     @GetMapping("/flealist")
-    public String fleaList(Model model, @PageableDefault(page = 0, size = 10, sort = "bno", direction = Sort.Direction.DESC)
-    Pageable pageable,
-                           String searchKeyword) {
+    public String fleaList(Model model, @PageableDefault(page = 0, size = 16, sort = "bno", direction = Sort.Direction.DESC)
+    Pageable pageable, String searchKeyword) {
 
         Page<Flea> list = null;
 
         if(searchKeyword != null) {
+
             list = fleaService.fleaSearchList(searchKeyword, pageable);
+
         } else {
+
             list = fleaService.flealist(pageable);
         }
 
@@ -100,17 +107,39 @@ public class FleaController {
     }
 
     @PostMapping("/flea/update/{bno}")
-    public String fleaUpdate(@PathVariable("bno") Integer bno, Flea flea, Model model, MultipartFile file) throws Exception {
+    public String fleaUpdate(@PathVariable("bno") Integer bno, Flea flea, Model model, MultipartFile imgFile) throws Exception {
 
         Flea fleaTemp = fleaService.fleaView(bno);
+
         fleaTemp.setTitle(flea.getTitle());
         fleaTemp.setContent(flea.getContent());
+        fleaTemp.setPrice(flea.getPrice());
+        fleaTemp.setContent(flea.getImgPath());
 
-        fleaService.write(fleaTemp, file);
+        fleaService.write(fleaTemp, imgFile);
 
         model.addAttribute("message", "글 수정이 완료 되었습니다.");
         model.addAttribute("searchUrl", "/flealist");
 
         return "message";
     }
+
+    @PostMapping("/upload")
+    public ResponseEntity<String> handleFileUpload(@RequestParam("imgFile") MultipartFile imgFile) {
+        if (imgFile.isEmpty()) {
+            return ResponseEntity.badRequest().body("File is empty");
+        }
+
+        try {
+            // HEIC 파일 처리
+            byte[] bytes = imgFile.getBytes();
+            // ...
+
+            return ResponseEntity.ok().body("File uploaded successfully");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload file");
+        }
+    }
+
 }

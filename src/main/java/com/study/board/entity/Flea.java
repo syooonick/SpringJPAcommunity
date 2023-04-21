@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
+import java.util.Objects;
 
 
 @NoArgsConstructor
@@ -30,11 +32,27 @@ public class Flea {
     @Column(name ="content")
     private String content;
 
+    @Lob
+    @Column(name = "img_data", columnDefinition = "MEDIUMBLOB")
+    private byte[] imageData;
+
+    @NotNull
     @Column(name ="img_name")
     private String imgName;
 
-    @Column(name ="img_path")
+//    @NotNull
+//    @Column(name ="img_path")
+//    private String imgPath;
+
     private String imgPath;
+
+    public String getImgPath() {
+        return Objects.requireNonNullElse(imgPath, "");
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
 
     @Column(name ="writer")
     private String writer;
@@ -45,6 +63,6 @@ public class Flea {
     @Column(name ="date")
     private Date date;
 
-//    private int price;
-
+    @Column(name ="price")
+    private String price;
 }

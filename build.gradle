@@ -8,8 +8,8 @@ group = 'com.study'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 java {
-	sourceCompatibility = JavaVersion.VERSION_1_8
-	targetCompatibility = JavaVersion.VERSION_1_8
+	sourceCompatibility = JavaVersion.VERSION_1_9
+	targetCompatibility = JavaVersion.VERSION_1_9
 }
 
 configurations {
@@ -29,6 +29,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 //  implementation 'org.testng:testng:7.7.0'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.jetbrains:annotations:23.0.0'
+	implementation 'org.jetbrains:annotations:23.0.0'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -37,6 +39,10 @@ dependencies {
 	implementation 'jakarta.validation:jakarta.validation-api:3.0.0'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation 'javax.validation:validation-api:2.0.1.Final'
+	implementation 'commons-fileupload:commons-fileupload:1.4'
+	implementation 'com.twelvemonkeys.imageio:imageio-heif:4.5.2'
+
+
 
 }
 

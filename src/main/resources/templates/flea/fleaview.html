@@ -63,46 +63,45 @@
         </div>
     </div>
 </header>
-
-<div class="board_wrap">
-    <div class="board_title">
-        <strong>Regular Bold</strong>
-        <p>Regular Bold 플리마켓</p>
-    </div>
-    <div class="board_view_wrap">
-        <div class="board_view">
-            <div class="title">
-                <h1 th:text="${flea.title}"></h1>
-            </div>
-            <div class="info">
                 <dl>
-                    <dt>번호</dt>     <!-- boardNum 추가 -->
+                    <dt>제목</dt>
+                    <h1 th:text="${flea.title}"></h1>
+                </dl>
+                <dl>
+                    <dt>번호</dt>
                     <dd th:text="${flea.bno}"></dd>
                 </dl>
                 <dl>
                     <dt>글쓴이</dt>
-                    <dd th:text="${flea.writer}"></dd>    <!-- userNickname 추가 -->
+                    <dd th:text="${flea.writer}"></dd>
                 </dl>
                 <dl>
                     <dt>작성일</dt>
-                    <dd th:text="${flea.date}"></dd>  <!-- regDate 추가 -->
+                    <dd th:text="${flea.date}"></dd>
                 </dl>
                 <dl>
-                    <dt>조회</dt>     <!-- viewCount 추가 -->
+                    <dt>조회</dt>
                     <dd th:text="${flea.count}"></dd>
                 </dl>
-            </div>
-            <div class="cont">
-                <p th:text="${flea.content}"></p>
-            </div>
-        </div>
+                <dl>
+                    <dt>가격</dt>
+                    <p th:text="|${flea.getPrice()} 원|"></p>
+                </dl>
+                <dl>
+                    <dt>내용</dt>
+                    <p th:text="${flea.content}"></p>
+                </dl>
+
+        <img class="card-img-top" style="aspect-ratio: 2; width:70%" th:src="@{${flea.getImgPath()}}" alt="이미지를 확인 해주세요."/>
         <div class="bt_wrap">
             <a href="flealist" class="on">목록</a>
             <a th:href="@{/flea/modify/{bno}(bno = ${flea.bno})}">수정</a>
             <a th:href="@{/flea/delete(bno=${flea.bno})}">삭제</a>
-<!--            <a th:href="@{${flea.filepath}}">다운받기</a>-->
         </div>
-    </div>
-</div>
+
+<!-- Bootstrap core JS 드랍다운 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
 </body>
 </html>

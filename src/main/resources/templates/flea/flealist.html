@@ -1,97 +1,6 @@
-<!--<!DOCTYPE html>-->
-
-<!--<html lang="ko" xmlns:th="https://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Regular Bold | 플리마켓</title>-->
-<!--    <link rel="stylesheet" href="/css/css.css"/>-->
-<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
-<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">-->
-<!--&lt;!&ndash;    <img src="/images/logo.png"/>&ndash;&gt;-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<nav class="navbar">-->
-<!--    <div class="nav_logo">-->
-<!--        <i class="fa-solid fa-star"></i>-->
-<!--        <a href="../main">Regular<span>   Bold</span></a>-->
-<!--    </div>-->
-
-<!--    <ul class="nav_menu">-->
-<!--        <li><a href="main">Main</a></li>-->
-
-<!--        <li><a href="boardlist">Board</a></li>-->
-<!--        <li><a href="flealist">Flea Market</a></li>-->
-<!--        <li><a href="../introduce">Introduce</a></li>-->
-<!--        <li><a href="login">Login</a></li>-->
-<!--    </ul>-->
-<!--</nav>-->
-
-<!--<div class="font">-->
-<!--    플리마켓-->
-<!--</div>-->
-
-<!--<div class="board_wrap">-->
-<!--    <div class="logo.png"></div>-->
-<!--    <div class="board_title">-->
-
-<!--        <strong>Regular Bold</strong>-->
-<!--        <p>레귤러볼드 플리마켓</p>-->
-
-<!--        <form th:action="@{/flea/list}" method="get">-->
-<!--            <button type="submit" style="width:70px; height:30px; float:right";>검색</button>-->
-<!--            <input type="text" style="width:33%; height:26px; float:right;" name="searchKeyword">-->
-<!--        </form>-->
-
-<!--    </div>-->
-
-<!--    <div class="board_list_wrap">-->
-<!--        <div class="board_list">-->
-<!--            <div class="top">-->
-<!--                <div class="num">번호</div>-->
-<!--                <div class="title">제목</div>-->
-<!--                <div class="writer">글쓴이</div>-->
-<!--                <div class="date">작성일</div>-->
-<!--                <div class="count">조회</div>-->
-<!--            </div>-->
-<!--            &lt;!&ndash; 게시글 리스트 &ndash;&gt;-->
-<!--            <div th:each="flea : ${list}">-->
-
-<!--                <div class="num" th:text="${flea.bno}"></div>-->
-
-<!--                <div class="title"><a th:href="@{/fleaview(bno=${flea.bno})}" th:text="${flea.title}"></a></div>-->
-
-<!--                <div class="writer" th:text="${flea.writer}"></div>-->
-
-<!--                <div class="date" th:text="${#dates.format(flea.date, 'yyyy-MM-dd')}"></div>-->
-<!--&lt;!&ndash;                <div class="date" th:if="${flea.date != null}" th:text="${#dates.format(flea.date, 'yyyy-MM-dd')}"></div>&ndash;&gt;-->
-
-<!--                <div class="count" th:text="${flea.count}"></div>-->
-
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div class="board_page">-->
-<!--            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">-->
-<!--                <a th:if="${page != nowPage}"-->
-<!--                   th:href="@{/boardlist(page=${page -1}, searchKeyword=${param.searchKeyword})}"-->
-<!--                   th:text="${page}" class="num"></a>-->
-<!--                <a th:if="${page == nowPage}"-->
-<!--                   th:text="${page}" class="num on"></a>-->
-<!--            </th:block>-->
-<!--        </div>-->
-
-<!--        <div class="bt_wrap">-->
-<!--            <a href="/flea/write" class="on">등록</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--</body>-->
-
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="ko">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -103,7 +12,7 @@
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -132,11 +41,15 @@
                     <i class="bi bi-emoji-smile"></i>
                         검색
                     </button>
-                <button class="btn btn-outline-dark">
+            </form>
+            <form class="d-flex" th:action="@{/flea/write}">
+                <button class="btn btn-outline-dark" href="flea/write">
                     <i class="bi bi-pencil"></i>
                     등록
                 </button>
-                <button class="btn btn-outline-dark"><a href="../flea/write"></a>
+            </form>
+            <form class="d-flex" th:action="@{../../login}">
+                <button class="btn btn-outline-dark">
                     <i class="bi bi-people"></i>
                     Login
                 </button>
@@ -153,7 +66,16 @@
         </div>
     </div>
 </header>
-
+<!--            페이지 네이션-->
+<div style="">
+    <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+        <a th:if="${page != nowPage}"
+           th:href="@{/flealist(page=${page -1}, searchKeyword=${param.searchKeyword})}"
+           th:text="${page}" class="num"></a>
+        <a th:if="${page == nowPage}"
+           th:text="${page}" class="num on"></a>
+    </th:block>
+</div>
 <!-- Section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
@@ -162,7 +84,7 @@
 <!--            첫번째 아이템 -->
             <div class="col mb-5" th:each="flea : ${list}">
                 <div class="card h-100">
-                    <!-- Product image-->
+                     Product image
                     <img class="card-img-top" th:src="@{${flea.getImgPath()}}" alt="이미지를 확인 해주세요."/>
                     <!-- Product details-->
                     <div class="card-body p-4">
@@ -170,7 +92,9 @@
                             <!-- Product name-->
                             <div class="fw-bolder" th:text="${flea.title}"></div>
                             <!-- Product price-->
-                            50.000원
+                            <div>
+                            <p th:text="|${flea.getPrice()} 원|"></p>
+                            </div>
                         </div>
                     </div>
                     <!-- Product actions-->
@@ -182,14 +106,14 @@
         </div>
     </div>
 </section>
-</div>
+
 <!-- Footer-->
 <footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; SUNG YOON LEE
         <br>주식회사 레귤러볼드서울시 성동구 서울숲2길 32-14 갤러리아포레 1동 3층
         <br>전화 02-2138-0123 프로젝트 문의 hello@regularbold.co.kr 채용 문의 job@regularbold.co.kr</p></div>
 </footer>
-<!-- Bootstrap core JS-->
+<!-- Bootstrap core JS 드랍다운 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>

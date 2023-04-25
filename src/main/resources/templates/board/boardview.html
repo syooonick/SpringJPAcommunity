@@ -1,28 +1,76 @@
 <!DOCTYPE html>
-<html lang="ko">
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시글 상세 페이지</title>
-    <link rel="stylesheet" href="/css/css.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Regular Bold | Flea Market</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/styles.css" rel="stylesheet"/>
+    <!-- Bootstrap core JS 드랍다운 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="nav_logo">
-        <i class="fa-solid fa-star"></i>
-        <a href="../main">Regular<span>   Bold</span></a>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="main">Regular Bold</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="../../boardlist">자유게시판</a></li>
+                        <li><a class="dropdown-item" href="../../board/write">자유게시판 글쓰기</a></li>
+                        <li><a class="dropdown-item" href="../../flealist">플리마켓</a></li>
+                        <li><a class="dropdown-item" href="../../flea/write">플리마켓 글쓰기</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex" th:action="@{/flealist}" method="get">
+                <input type="text" style="width:200px; height:37px; float:right;" name="searchKeyword">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi bi-emoji-smile"></i>
+                    검색
+                </button>
+            </form>
+            <form class="d-flex" th:action="@{/flea/write}">
+                <button class="btn btn-outline-dark" href="flea/write">
+                    <i class="bi bi-pencil"></i>
+                    등록
+                </button>
+            </form>
+            <form class="d-flex" th:action="@{../../login}">
+                <button class="btn btn-outline-dark">
+                    <i class="bi bi-people"></i>
+                    Login
+                </button>
+            </form>
+        </div>
     </div>
-
-    <ul class="nav_menu">
-        <li><a href="main">Main</a></li>
-
-        <li><a href="boardlist">Board</a></li>
-        <li><a href="flealist">Flea Market</a></li>
-        <li><a href="../introduce">Introduce</a></li>
-        <li><a href="login">Login</a></li>
-    </ul>
 </nav>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Regular Bold</h1>
+            <p class="lead fw-normal text-white-50 mb-0">RB FleaMarket</p>
+        </div>
+    </div>
+</header>
 
 <div class="board_wrap">
     <div class="board_title">

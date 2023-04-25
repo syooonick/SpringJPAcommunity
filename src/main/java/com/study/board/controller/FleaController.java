@@ -2,12 +2,14 @@ package com.study.board.controller;
 
 import com.study.board.entity.Flea;
 import com.study.board.service.FleaService;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 
@@ -133,7 +144,6 @@ public class FleaController {
         try {
             // HEIC 파일 처리
             byte[] bytes = imgFile.getBytes();
-            // ...
 
             return ResponseEntity.ok().body("File uploaded successfully");
         } catch (IOException e) {
@@ -141,5 +151,24 @@ public class FleaController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload file");
         }
     }
+
+    @GetMapping("/image")
+    public void getImage(HttpServletResponse response) throws Exception {
+        // HEIC 파일을 JPEG로 변환하는 코드
+        File heicFile = new File("/static/files/");
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ProcessBuilder builder = new ProcessBuilder("magick", "-quality", "80", heicFile.getAbsolutePath(), "JPEG:-");
+        builder.redirectErrorStream(true);
+        Process process = builder.start();
+        IOUtils.copy(process.getInputStream(), outputStream);
+        process.waitFor();
+        byte[] jpegData = outputStream.toByteArray();
+
+        // HTTP 응답으로 JPEG 데이터 전송
+        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+        response.getOutputStream().write(jpegData);
+    }
+
+
 
 }

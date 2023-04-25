@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 
@@ -32,17 +34,15 @@ public class Flea {
     @Column(name ="content")
     private String content;
 
-    @Lob
-    @Column(name = "img_data", columnDefinition = "MEDIUMBLOB")
-    private byte[] imageData;
-
     @NotNull
     @Column(name ="img_name")
     private String imgName;
 
-//    @NotNull
-//    @Column(name ="img_path")
-//    private String imgPath;
+    @PrePersist
+    public void bno() {
+        this.createDate = LocalDateTime.now();
+    }
+    private LocalDateTime createDate;
 
     private String imgPath;
 
@@ -59,9 +59,6 @@ public class Flea {
 
     @Column(name ="count")
     private String count;
-
-    @Column(name ="date")
-    private Date date;
 
     @Column(name ="price")
     private String price;

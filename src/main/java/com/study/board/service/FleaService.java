@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
@@ -46,6 +47,16 @@ public class FleaService {
         flea.setImgName(imgName);
         flea.setImgPath("/files/" + imgName);
         fleaRepository.save(flea);
+
+        // HEIC 파일을 JPEG로 변환하는 코드
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ProcessBuilder builder = new ProcessBuilder("magick", "-quality", "80", "input.heic", "JPEG:-");
+        builder.redirectErrorStream(true);
+        Process process = builder.start();
+        IOUtils.copy(process.getInputStream(), outputStream);
+        process.waitFor();
+        byte[] jpegData = outputStream.toByteArray();
+
     }
 
 

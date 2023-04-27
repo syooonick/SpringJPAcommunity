@@ -69,7 +69,7 @@ public class FleaController {
     }
 
     @GetMapping("/flealist")
-    public String fleaList(Model model, @PageableDefault(page = 0, size = 16, sort = "bno", direction = Sort.Direction.DESC)
+    public String fleaList(Model model, @PageableDefault(page = 0, size = 12, sort = "bno", direction = Sort.Direction.DESC)
     Pageable pageable, String searchKeyword) {
 
         Page<Flea> list = null;

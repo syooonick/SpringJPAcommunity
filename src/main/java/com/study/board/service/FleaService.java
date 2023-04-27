@@ -50,11 +50,17 @@ public class FleaService {
 
         // HEIC 파일을 JPEG로 변환하는 코드
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
         ProcessBuilder builder = new ProcessBuilder("magick", "-quality", "80", "input.heic", "JPEG:-");
+
         builder.redirectErrorStream(true);
+
         Process process = builder.start();
+
         IOUtils.copy(process.getInputStream(), outputStream);
+
         process.waitFor();
+
         byte[] jpegData = outputStream.toByteArray();
 
     }

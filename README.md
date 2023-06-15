@@ -2,8 +2,8 @@
 
 
 🔌 Dependencies
-Spring Boot DevTools
-Lombok
+Spring Boot DevTools <br>
+Lombok <br>
 Spring Data JPA
 MariaDB Driver
 Spring Security

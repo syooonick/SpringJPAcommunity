@@ -2,7 +2,10 @@ package com.study.board.controller;
 
 
 import com.study.board.entity.Board;
+import com.study.board.entity.User;
+import com.study.board.repository.UserRepository;
 import com.study.board.service.BoardService;
+import com.study.board.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,12 +18,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 
 public class BoardController {
 
     @Autowired
     private BoardService boardService;
+    private final UserService userService;
+
+    public BoardController(BoardService boardService, UserService userService) {
+        this.boardService = boardService;
+        this.userService = userService;
+    }
+
+
+    @GetMapping("/boardview")
+    public String boardView(Model model, Long bno) {
+        boardService.increaseViewCount(bno);
+        model.addAttribute("board", boardService.boardView(bno));
+        return "board/boardview";
+    }
 
     @GetMapping("/board/write")  // localhost:8080/board/write
     public String boardWriteForm() {
@@ -61,14 +80,14 @@ public class BoardController {
 
         return "board/boardlist";
     }
-    @GetMapping("/boardview")
-    public String boardView(Model model, Integer bno) {
-        model.addAttribute("board", boardService.boardView(bno));
-        return "board/boardview";
-    }
+//    @GetMapping("/boardview")
+//    public String boardView(Model model, Long bno) {
+//        model.addAttribute("board", boardService.boardView(bno));
+//        return "board/boardview";
+//    }
 
     @GetMapping("/board/delete")
-    public String boardDelete(Integer bno, Model model) {
+    public String boardDelete(Long bno, Model model) {
         boardService.boardDelete(bno);
 
         model.addAttribute("message", "글 삭제가 완료 되었습니다.");
@@ -78,13 +97,13 @@ public class BoardController {
     }
 
     @GetMapping("/board/modify/{bno}")
-    public String boardModify(@PathVariable("bno") Integer bno, Model model) {
+    public String boardModify(@PathVariable("bno") Long bno, Model model) {
         model.addAttribute("board", boardService.boardView(bno));
         return "board/boardmodify";
     }
 
     @PostMapping("/board/update/{bno}")
-    public String boardUpdate(@PathVariable("bno") Integer bno, Board board, Model model){
+    public String boardUpdate(@PathVariable("bno") Long bno, Board board, Model model){
 
         Board boardTemp = boardService.boardView(bno);
         boardTemp.setTitle(board.getTitle());

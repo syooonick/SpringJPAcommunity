@@ -3,7 +3,7 @@
 <html lang="ko" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Regular Bold | 게시판 수정</title>
+    <title>게시판 수정</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/css.css"/>
 </head>
@@ -12,7 +12,7 @@
 <nav class="navbar">
     <div class="nav_logo">
         <i class="fa-solid fa-star"></i>
-        <a href="../main">Regular<span>   Bold</span></a>
+        <a href="../main">HEADER</a>
     </div>
 
     <ul class="nav_menu">
@@ -28,8 +28,8 @@
 <div class="layout">
     <div class="board_wrap">
         <div class="board_title">
-            <strong>Regular Bold</strong>
-            <p>Regular Bold 자유게시판 수정</p>
+            <strong>Sung Yoon Lee</strong>
+            <p>자유게시판 수정</p>
         </div>
         <form th:action="@{/board/update/{bno}(bno = ${board.bno})}" method="post" class="board_write_wrap">
 

@@ -4,7 +4,7 @@ import com.study.board.entity.User;
 import lombok.Data;
 
 @Data
-public class signupDTO {
+public class SignupDto {
     private String username;
     private String password;
     private String email;

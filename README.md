@@ -1,4 +1,4 @@
-⭐️Project
+⭐️커뮤니티 Project
 
 
 🔌 Dependencies
